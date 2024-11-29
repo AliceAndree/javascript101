@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript Cheatsheet</title>
+  </head>
+  <body>
+    <script>
+      /* Embedding JavaScript */
+
+      const name = "Alice";
+      const greeting = `Hello, ${name}`;
+      const presentation = "My name is ";
+      const sentence = `${presentation}${name}`;
+      console.log(sentence); // My name is Alice
+      console.log(greeting); // Hello Alice
+
+      /* String Methods */
+
+      // Length
+      let text = "anticonstitutionnellement";
+      let length = text.length; // 25
+      console.log(length);
+
+      // charAt()
+      let helloWorld = "Hello world";
+      let char = helloWorld.charAt(0); // H
+      console.log(char);
+
+      // charCodeAt()
+      let coucou = "Coucou";
+      let charCode = coucou.charCodeAt(0); // 67
+      console.log(charCode);
+
+      // at()
+      const codingSchool = "W3Schools";
+      let letter = codingSchool.at(2); // S
+      let otherLetter = codingSchool[5]; // o
+      console.log(letter);
+      console.log(otherLetter);
+
+      // slice()
+      let fruits = "Apple, Banana, Kiwi";
+      let part = fruits.slice(7, 13); // Banana
+      console.log(part);
+
+      // substring()
+      let partTwo = fruits.substring(-1, 13); // Apple, Banana (values under 0 are treated as 0)
+      console.log(partTwo);
+
+      // substr() is similar to slice() but the second parameter specifies the length of the extracted part.
+      let partThree = fruits.substr(7, 6);
+      console.log(partThree);
+
+      // toUpperCase()
+      let upperCase = helloWorld.toUpperCase(); // HELLO WORLD
+      console.log(upperCase);
+
+      // toLowerCase()
+      let lowerCase = helloWorld.toLowerCase(); // hello world
+      console.log(lowerCase);
+
+      // concat()
+      let hello = "Hello";
+      let world = "World";
+      let concat = hello.concat(" ", world); // Hello World
+      console.log(concat);
+
+      // trim()
+      let whiteSpacedWord = "   Hello World!   "; // Hello World!
+      let trimedWord = whiteSpacedWord.trim();
+      console.log(trimedWord);
+
+      // trimStart()
+      let trimedStartWord = whiteSpacedWord.trimStart(); // Hello World!___
+      console.log(trimedStartWord);
+
+      // trimEnd()
+      let trimedEndWord = whiteSpacedWord.trimEnd(); //___Hello World!
+      console.log(trimedEndWord);
+
+      // padStart()
+      let five = "5";
+      let paddedStart = five.padStart(4, "0"); // 0005
+      console.log(paddedStart);
+
+      // padEnd()
+      let paddedEnd = five.padEnd(4, "x"); // 5xxx
+      console.log(paddedEnd);
+
+      // repeat()
+      let repeat = helloWorld.repeat(4); // Hello worldHello wordHello worldHello world
+      console.log(repeat);
+
+      // replace()
+      let pipou = "Pipou";
+      let newText = sentence.replace(`${name}`, `${pipou}`); // My name is Pipou
+      console.log(newText);
+
+      // replaceAll()
+      let paragraph =
+        "I love dogs. Dogs are very easy to love. Dogs are very popular.";
+      paragraph = paragraph.replaceAll("Dogs", "Cats");
+      paragraph = paragraph.replaceAll("dogs", "cats");
+      console.log(paragraph); // I love cats. Cats are very easy to love. Cats are very popular.
+
+      // split()
+      let myArray = paragraph.split(".");
+      console.log(myArray[0]); // I love cats
+      console.log(myArray[1].trimStart()); // Cats are very easy to love
+      console.log(myArray[2].trimStart()); // Cats are very popular
+
+      /* Array Methods */
+
+      // length
+      fruits = ["Apple", "Banana", "Mango"];
+      let size = fruits.length; // 3
+      console.log(size);
+      fruits[fruits.length] = "Peach"; // add an element at the end of the array without using the push() method
+      console.log(fruits); // ['Apple', 'Banana', 'Mango', 'Peach']
+
+      // toString()
+      fruits = ["Apple", "Banana", "Mango"];
+      console.log(fruits.toString()); // Apple,Banana,Mango
+
+      // at()
+      fruits = ["Apple", "Banana", "Mango"];
+      console.log(fruits.at(2)); // Mango -> fruits.at(2) is the same as fruits[2]. In JS fruits[-1] doesn't work and fruits.at(-1) solve this issue.
+
+      // join()
+      // behaves like toString() but in addition you can specify the seperator
+      console.log(fruits.join(" * ")); // Apple * Banana * Mango
+
+      // pop()
+      // to remove (pop OUT) the last element of an array. The method returns the value that was "popped out".
+      fruits = ["Apple", "Banana", "Mango"];
+      console.log(fruits.pop()); // Mango
+
+      // push()
+      // to add (push IN) an element at the end of an array.
+      console.log(fruits.push("Kiwi")); // 3 (it returns the new array length)
+      console.log(fruits); // ['Apple', 'Banana', 'Kiwi']
+
+      // shift()
+      // equivalent to the pop() method but working on the first element and "shifts" all other elements to a lower index.
+      console.log(fruits.shift()); // Apple (it returns the element that was "shifted out".)
+
+      // unshift()
+      // equivalent to the push() method but working on the first element and "unshifts" all older elements.
+      console.log(fruits.unshift("Strawberry")); // 3 (it returns the new array length)
+      console.log(fruits); // ['Strawberry', 'Banana', 'Kiwi']
+
+      // changing array element
+      fruits[1] = "Lemon";
+      console.log(fruits); // ['Stramberry', 'Lemon', 'Kiwi']
+
+      //concat()
+      // this methos can take as many arguments we want, and can also use a string as the argument.
+      let women = ["Alice", "Cécile", "Juliette", "Léonie"];
+      let men = ["Steph", "Kenny", "Paul", "Lucien"];
+      let people = women.concat(men);
+      console.log(people); // ['Alice', 'Cécile', 'Juliette', 'Léonie', 'Steph', 'Kenny', 'Paul', 'Lucien'];
+
+      // copyWithin()
+      fruits.copyWithin(2, 0);
+      console.log(fruits); // ['Stramberry', 'Lemon', 'Strawberry'] -> copies to index 2 all elements from index 0.
+
+      // flat()
+      // creates a new array with sub-array elements concatenated
+      myArray = [
+        [1, 2],
+        [3, 4],
+        [5, 6],
+      ];
+      let newArray = myArray.flat();
+      console.log(newArray); // ['1', '2', '3', '4', '5', '6']
+
+      // splice()
+      fruits = ["Stramberry", "Lemon", "Kiwi"];
+      fruits.splice(
+        1,
+        0,
+        "Blueberry",
+        "Pineapple"
+      ); /* -> The first parameter (2) defines the position where new elements should be added (spliced in).
+            -> The second parameter (0) defines how many elements should be removed.
+            -> The rest of the parameters ("Blueberry" , "Pineapple") define the new elements to be added.
+          */
+      console.log(fruits); // ['Strawberry', Blueberry', 'Pineapple', 'Lemon', 'Kiwi']
+      // splice () can also be used to only remove an element without leaving emty spaces in the array
+      fruits.splice(3, 1);
+      console.log(fruits); // ['Strawberry', Blueberry', 'Pineapple', 'Kiwi']
+
+      // toSpliced()
+      // works like splice() but creates a new array, keeping the original array unchanged
+      let splicedFruits = fruits.toSpliced(1, 2);
+      console.log(fruits); // ['Strawberry', Blueberry', 'Pineapple', 'Kiwi']
+      console.log(splicedFruits); // ['Strawberry', 'Kiwi']
+
+      // slice()
+      // The slice() method slices out a piece of an array into a new array
+      let slicedFruits = fruits.slice(1); // Slice out a part of an array starting from array element 1 ("Strawberry")
+      console.log(slicedFruits); // ['Blueberry', 'Pineapple', 'Kiwi']
+      // slice() can have two arguments
+      slicedFruits = fruits.slice(1, 3);
+      console.log(slicedFruits); // ['Blueberry', 'Kiwi']
+
+      //toString()
+      fruits = ["Stramberry", "Lemon", "Kiwi"];
+      console.log(fruits.toString()); // Strawberry,Lemon,Kiwi
+
+      // indexOf()
+      // returns -1 if the item is not found
+      console.log(`Lemon was found in position ${fruits.indexOf("Lemon") + 1}`); //Lemon was found in position 2
+
+      // lastIndexOf()
+      //is the same as Array.indexOf(), but returns the position of the last occurrence of the specified element.
+      fruits.push("Lemon");
+      console.log(
+        `Lemon was last found in position ${fruits.lastIndexOf("Lemon") + 1}`
+      ); //Lemon was found in position 4
+
+      // includes()
+      console.log(fruits.includes("Kiwi")); // true
+
+      //find()
+      //returns the value of the first array element that passes a test function.
+      let numbers = [4, 9, 16, 25, 29];
+      let first = numbers.find(myFunction);
+
+      function myFunction(value, index, array) {
+        return value > 18;
+      }
+
+      console.log(`The first number over 18 is ${first}`); // The first number over 18 is 25
+
+      // findIndex
+      // returns the index of the first array element that passes a test function.
+      let firstIndex = numbers.findIndex(myFunction);
+      console.log(`The first number index over 18 is ${firstIndex}`); // The first number index over 18 is 3
+
+      // findLast()
+      // method that will start from the end of an array and return the value of the first element that satisfies a condition.
+      let temperature = [27, 28, 30, 40, 42, 35, 30];
+      let highTemp = temperature.findLast((x) => x > 40);
+      console.log(`The last temperature over 40 is ${highTemp}`); // The last temperature over 40 is 42
+
+      // findLastIndex()
+      let highTempIndex = temperature.findLastIndex((x) => x > 40);
+      console.log(`The last temperature index over 40 is ${highTempIndex}`); // The last temperature index over 40 is 4
+
+      // sort()
+      // sorts an array alphabetically.
+      fruits = ["Stramberry", "Lemon", "Kiwi"];
+      console.log(fruits.sort()); // ['Kiwi', 'Lemon', 'Strawberry']
+
+      // toSorted()
+      // sorts an array alphabetically in a new array (doesn't alter the original array).
+      fruits = ["Stramberry", "Lemon", "Kiwi"];
+      let sortedFruits = fruits.toSorted();
+      console.log(sortedFruits); // ['Kiwi', 'Lemon', 'Strawberry']
+      console.log(fruits); // ['Strawberry', 'Lemon', 'Kiwi']
+
+      // reverse()
+      // reverses the elements in an array.
+      console.log(fruits.reverse()); // ['Kiwi', 'Lemon', 'Strawberry']
+
+      // toReversed
+      // reverses the elements in a new array (doesn't alter the original array).
+      fruits = ["Stramberry", "Lemon", "Kiwi"];
+      let reversedFruits = fruits.toReversed();
+      console.log(reversedFruits); // ['Kiwi', 'Lemon', 'Strawberry']
+      console.log(fruits); // ['Strawberry', 'Lemon', 'Kiwi']
+
+      /* Comparaisons */
+
+      // Greater / Less than
+      console.log(2 > 1); // true
+      console.log(2 < 1); // false
+
+      // Greater / Less than or Equals
+      console.log(2 >= 1); // true
+      console.log(2 <= 1); // false
+
+      // Equals
+      let a = 2;
+      let b = 2;
+      let c = 1;
+      console.log(a == b); // true
+      console.log(a == c); // false
+
+      // Not equals
+      console.log(a != c); // true
+      console.log(a != b); // false
+
+      // Boolean
+      // true means "yes", "correct", "the truth"
+      // false means "no", "not correct", "not the truth"
+      console.log(true == 1); // true
+      console.log(false == 0); // true
+
+      // Strict equality
+      // Operands of different types are converted to numbers by the equality operator ==
+      // So we need to use the strict equality operator the diffentiate them
+      console.log(0 == false); // true
+      console.log(0 === false); //false
+
+      // Comparaison with null and undefined
+      console.log(null == undefined); // true
+      console.log(null === undefined); // false
+
+      /* Logical operators */
+
+      // || (OR)
+      console.log(true || true); // true
+      console.log(false || true); // true
+      console.log(true || false); // true
+      console.log(false || false); // false
+
+      let itemOne = "";
+      let itemTwo = "";
+      let itemThree = "Book";
+      console.log(itemOne || itemTwo || itemThree); // Book (|| returns the first truthy value or the last falsy one).
+
+      // && (AND)
+      console.log(true && true); // true
+      console.log(false && true); // false
+      console.log(true && false); // false
+      console.log(false && false); // false
+      //(&& returns the first falsy value or the last truthy one).
+
+      // !(NOT)
+      console.log(!true); // false
+      console.log(!0); // true
+
+      /* Conditional Statements */
+      let condition = "";
+      let condition1 = "";
+      let condition2 = "";
+      let expression = "";
+      let x = "";
+      let y = "";
+      // if
+      if (condition) {
+        // block of code to be executed if the condition is true
+      }
+
+      // else
+      if (condition) {
+        // block of code to be executed if the condition is true
+      } else {
+        // block of code to be executed if the condition is false
+      }
+
+      // else if
+      if (condition1) {
+        // block of code to be executed if the condition is true
+      } else if (condition2) {
+        // block of code to be executed if the condition1 is false
+      } else {
+        // block of code to be executed if the condition2 is false
+      }
+
+      // switch
+      switch (expression) {
+        case x:
+          // code block
+          break;
+        case y:
+          // code block
+          break;
+        default:
+        // code block
+      }
+
+      /* Loops */
+
+      // for
+      /*
+
+      for (expression 1; expression 2; expression 3) {
+      code block to be executed
+      }
+
+      Expression 1 is executed (one time) before the execution of the code block.
+      Expression 2 defines the condition for executing the code block.
+      Expression 3 is executed (every time) after the code has been executed.
+
+      */
+      //example:
+      text = "";
+
+      for (let i = 0; i < 5; i++) {
+        text += "The number is " + i + "\n";
+      }
+      console.log(text); /* The number is 0
+                            The number is 1
+                            The number is 2
+                            The number is 3
+                            The number is 4
+                            */
+
+      // for in
+      // for in statement loops through the properties of an Object.
+      // example:
+      const person = { fname: "Alice", lname: "Andrée", age: 99 };
+      text = "";
+
+      for (let x in person) {
+        text += person[x] + " ";
+      }
+      console.log(text); // Alice Andrée 99
+
+      // for of
+      // for of statement loops through the values of an iterable object (Arrays, Strings, Maps, Nodelists, ...)
+      // example:
+      const familly = ["Steph", "Molly", "Isaac", "Micka", "Mum", "Kenny"];
+      text = "";
+      for (let x of familly) {
+        text += x + "\n";
+      }
+      console.log(text); /* Steph
+                            Molly
+                            Isaac
+                            Micka
+                            Mum
+                            Kenny 
+                            */
+
+      // while
+      // while loops through a block of code as long as a specified condition is true.
+      // example:
+      text = "";
+      let i = 0;
+      while (i < 10) {
+        text += "The number is " + i + "\n";
+        i++;
+      }
+      console.log(text);
+
+      // do while
+      // this loop will execute the code block once, before checking if the condition is true, then it will repeat the loop as long as the condition is true.
+      // example;
+      text = "";
+      i = 0;
+      do {
+        text += "The number is " + i + "\n";
+        i++;
+      } while (i < 10);
+      console.log(text);
+
+      /* Function */
+
+      function favoriteAnimal(animal) {
+        return animal + " is my favorite animal!";
+      }
+
+      console.log(favoriteAnimal("Pipou"));
+    </script>
+  </body>
+</html>
