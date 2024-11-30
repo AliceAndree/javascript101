@@ -273,9 +273,31 @@
       console.log(reversedFruits); // ['Kiwi', 'Lemon', 'Strawberry']
       console.log(fruits); // ['Strawberry', 'Lemon', 'Kiwi']
 
+      // map()
+      let numbersArray = [65, 44, 12, 4];
+      const newArr = numbersArray.map(myFunction);
+
+      function myFunction(num) {
+        console.log(num * 10); // Multiply all the values in an array with 10
+      }
+      /* 650
+         440
+         120
+         40
+         */
+
       /* Math */
       // The Math object allows you to perform mathematical tasks on numbers.
       // example:
+
+      // filter
+      // creates a new array filled with elements that pass a test provided by a function.
+      const ages = [32, 33, 16, 40];
+      const result = ages.filter(checkAdult);
+
+      function checkAdult(age) {
+        return age >= 18;
+      }
 
       console.log(Math.PI); // 3.141592653589793
       console.log(Math.round(4.6)); // 5
